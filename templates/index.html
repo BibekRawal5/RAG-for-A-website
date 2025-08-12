@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Website Chatbot</title>
+</head>
+<body>
+  <h1>Ask me about this website</h1>
+  <input type="text" id="question" placeholder="Type your question...">
+  <button onclick="ask()">Ask</button>
+  <p id="answer"></p>
+
+  <script>
+    async function ask() {
+      let q = document.getElementById("question").value;
+      let res = await fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({question: q})
+      });
+      let data = await res.json();
+      document.getElementById("answer").innerText = data.answer;
+    }
+  </script>
+</body>
+</html>

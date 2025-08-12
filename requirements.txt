@@ -1,0 +1,5 @@
+flask
+chromadb
+beautifulsoup4
+requests
+google-generativeai
