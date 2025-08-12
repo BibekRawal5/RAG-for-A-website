@@ -5,12 +5,11 @@ from config import GOOGLE_API_KEY, EMBEDDING_MODEL
 from data_loader import crawl_and_chunk
 
 # Initialize Chroma DB client
-
-client = chromadb.Client()
+client = chromadb.Client(Settings(persist_directory="./my_amuse_tech_db"))
 
 # Create or get collection with Gemini embeddings
 collection = client.get_or_create_collection(
-    name="website_content",
+    name="amuse_tech",
     embedding_function=embedding_functions.GoogleGenerativeAiEmbeddingFunction(
         api_key=GOOGLE_API_KEY,
         model_name=EMBEDDING_MODEL
@@ -40,4 +39,6 @@ def search_chunks(query, top_k=5):
         query_texts=[query],
         n_results=top_k
     )
+    
+    print(results)
     return results["documents"][0]

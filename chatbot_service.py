@@ -11,15 +11,14 @@ def retrieve_answer(user_query):
     context = "\n".join(retrieved_chunks)
 
     prompt = f"""
-    You are a helpful assistant that ONLY answers using the content provided below.
+    You are a helpful assistant that ONLY answers using the content provided below and previous responses and requests.
 
     Content:
     {context}
 
     Question:
     {user_query}
-
-    If the answer is not found in the content, say you don't have that information.
+    
     """
 
     model = genai.GenerativeModel(CHAT_MODEL)

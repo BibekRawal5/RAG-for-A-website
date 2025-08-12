@@ -1,13 +1,13 @@
 from flask import Flask, request, jsonify, render_template
 from chatbot_service import retrieve_answer
-from vector_store import load_site_into_db
+from vector_store import load_site_into_db, list_all_documents
 
 app = Flask(__name__)
 
 SEED_URL = "https://amusetechsolutions.com/" 
 
 load_site_into_db(SEED_URL)
-
+# list_all_documents()
 @app.route("/")
 def index():
     return render_template("index.html")
